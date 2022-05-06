@@ -1,7 +1,7 @@
 # Python and database workshop
 
 ## create_db.py
-Python script: create_db.py, in which:<b />
+Python script: create_db.py, in which:<br />
 - Create a database. If the database already exists, the script should inform the user about it without interrupting its operation.
 - Create a table holding the users' data. It should have the following columns:
   - id - primary key (preferably serial type),
@@ -15,7 +15,8 @@ Python script: create_db.py, in which:<b />
   - text - string (varchar (255)). If such a table already exists, the script inform the user about it without interrupting its execution.
 
 ## models.py 
-There is code in this model with classes that handle each table.<b />
+There is code in this model with classes that handle each table.<br />
+
 ### User class
 1. The class serving the user. It has the following attributes:
    - _id - set to -1 when created,
@@ -29,6 +30,7 @@ There is code in this model with classes that handle each table.<b />
    - load_user_by_id - load the user from the database based on his id, 
    - load_all_users - load all users from the database , 
    - delete - remove a user from the database and set his _id to -1.
+
 ### Message class
 1. The class that will handle our messages. It has the following attributes:
    - _id - set to -1 when created,
@@ -41,3 +43,41 @@ There is code in this model with classes that handle each table.<b />
    - save_to_db - save to the database or update an object in the database,
    - load_all_messages - loading all messages.
 
+## users.py
+It is an application that serves our users.<br />
+It is a console application that takes arguments entered by the user.<br />
+
+### Create a user
+If, when invoking the application, the user specifies only the following parameters: *username* and *password*:
+- if the user with the given name exists - report an error,
+- if there is no such user:
+  - if the password is at least 8 characters long, create it using the provided data,
+  - if the password is too short, an appropriate message should be displayed.
+
+### Editing the user's password
+If, when invoking the application, the user specifies parameters:
+- username,
+- password,
+- edit,
+- new_pass, it:
+- check if the user exists
+- check if the password is correct:
+   -  check if the new password (new_pass) has the required length:
+     - if it is shorter than 8 characters, report it with an appropriate message,
+     - if it is long enough, set a new password,
+   - if the password is incorrect, report it with an appropriate message.
+
+### User deletion
+If, when invoking the application, the user specifies parameters:
+- username,
+- password,
+- delete, check the correctness of the password:
+   - if correct - remove the user from the database,
+   - if incorrect - inform the user about it with an appropriate message, eg "Incorrect Password !.
+
+### Listing users
+If the user specifies the -l (--list) parameter when invoking the application, a list of all users should be listed.
+
+### Help
+If the user specifies a different set of parameters, the help panel should be displayed to him.<br />
+This can be done by calling the print_help method from the parser object.
