@@ -1,1 +1,1 @@
-# python-and-database-workshop
+# Python and database workshop
